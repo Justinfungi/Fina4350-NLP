@@ -9,6 +9,7 @@ import re
 from bs4 import BeautifulSoup
 import csv
 import time
+from datetime import datetime, timedelta
 
 keyword = input("请输入您要搜索的关键词：")
 start_number = 1
@@ -23,7 +24,7 @@ headers = {
 }
 
 
-while (start_number <= 2000):
+while (start_number <= 1000):
     url = f"https://news.search.yahoo.com/search?p={keyword}&b={start_number}"
     time.sleep(3)
     response = requests.get(url, headers = headers)
@@ -36,7 +37,13 @@ while (start_number <= 2000):
         link = re.search(pattern,unquoted_link).group(1)
 #        link = article.find('a').get('href')
         desc = article.find('p','s-desc').text.strip()
-        date = article.find('span','s-time').text.replace('.','').strip()
+        relative_time = article.find('span','s-time').text.strip()[2:]
+        if 'hour' in relative_time:
+            hours = int(relative_time.split()[0])
+            date = (datetime.utcnow() - timedelta(hours=hours)).strftime("%Y%m%d")
+        else:
+            days = int(relative_time.split()[0])
+            date = (datetime.utcnow() - timedelta(days=days)).strftime("%Y%m%d")
         source = article.find('span','s-source').text
         articles.append([title, source, link, desc, date])
 
