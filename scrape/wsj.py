@@ -29,6 +29,7 @@ def main():
         print(div_list)
         for div in div_list:
             title = div.find('span').text
+            link = div.find('a').get('href')
             try:
                 date = div.find('p', class_='WSJTheme--timestamp--22sfkNDv').text
             except:
@@ -40,6 +41,7 @@ def main():
             dic = {
                 'title': title,
                 'date': date,
+                'link': link,
                 'summary': summary
             }
             print(dic)
