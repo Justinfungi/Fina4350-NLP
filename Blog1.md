@@ -1,4 +1,6 @@
 **EveGPT**
+
+**Blog 1**
 Author: Fung Ho Kit  
 Co-Author: Yang Fan, Zhu Jiarui, Li Xinran  
 Created date: 2020.02.05  
@@ -27,5 +29,3 @@ After the separation of markets, work bank construction is rather essential. Her
 For crypto market, things are more uncertain and usually out of our expectation. From my point of view, we cannot rely on traditional financial insights to analysis the market trend heavily. First of all, we should focus on the bear market and bull market discussion. The general environment usually are the consequences of multiple aspects, such as policies posed on digital assets, new machanism on chain and so on. Monitoring some gaints and OGs on twitter and Analysis on their prediction on the conditions insides the crypto market is very important. It will help us avoid risk in the investment of crypto.
 
 
-
-(Tweets number, whale monitor)
