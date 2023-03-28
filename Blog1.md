@@ -1,6 +1,6 @@
 **GROUP 6 EveGPT**
 
-## Blog 1
+# Blog 1
 Author: Fung Ho Kit  
 Co-Author: Yang Fan, Zhu Jiarui, Li Xinran  
 Created date: 2023.02.05  
