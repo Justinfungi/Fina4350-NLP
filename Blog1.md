@@ -82,3 +82,17 @@ This work published on IEEE proposed a novel application of deep learning models
     $\Large value_{cn}^t = \frac{2*price_{cn}^t-(max{cn}+min_{cn})}{max_{cn}-min_{cn}}$
 
 After finishing processing the financial and text data individually, the authors utilized the matrix multiplication to unify their vector dimension so that the influence of both data can have similar weights. Then they directly merge the two time sequence of vectors and feed it into LSTM model, so that they wish to forecast the coming stock price. 
+
+# Blog 3 - 
+
+*Author: Yang Fan*
+
+*Co-Author: Fung Ho Kit, Li Xinran, Zhu Jiayi*
+
+*Created date: 2023.04.24  *
+
+## What to Scrape
+
+## How to Scrape
+
+## **TWITTER**
