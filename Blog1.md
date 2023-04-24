@@ -103,6 +103,7 @@ Web scraping is the process of extracting data from websites using automated too
 
 ## **TWITTER** 
 This section is listed separately because Twitter scraping failed.
+
 We first started using Twint for this, and with the workaround in its GitHub Issue, Twint was confirmed to work still. 
 
 （这是一张没有配的插图）
