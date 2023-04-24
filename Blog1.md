@@ -92,14 +92,14 @@ After finishing processing the financial and text data individually, the authors
 *Created date: 2023.04.24*
 
 ## What to Scrape
-After we had settled on the theme, we decided to scrape on mainstream news media and social media platforms. Considering our selection are all US technology companies, The Wall Street Journal, Consumer News and Business Channel, and Yahoo News are news media. Social media will focus on Reddit and Twitter.
+After we had settled on the theme, we decided to scrape on mainstream news media and social media platforms. Considering our selection are all US technology companies, The Wall Street Journal, Consumer News and Business Channel, Bloomberg, and Yahoo News are news media. Social media will focus on Twitter.
 
 ## How to Scrape
-Web scraping is the process of extracting data from websites using automated tools. It involves sending HTTP requests to websites, retrieving HTML content, and parsing the data to extract relevant information. We use Python and several libraries for our project, including Requests, BeautifulSoup, and Selenium. Reddit has its own official Python Reddit API Wrapper, Praw, so we use it.
+Web scraping is the process of extracting data from websites using automated tools. It involves sending HTTP requests to websites, retrieving HTML content, and parsing the data to extract relevant information. We use Python and several libraries for our project, including Requests, BeautifulSoup, and Selenium.
 
 ### WSJ and CNBC
 ### Yahoo News
-### Reddit
+### Bloomberg
 
 ## **TWITTER** 
 This section is listed separately because Twitter scraping failed.
