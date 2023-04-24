@@ -1,0 +1,8 @@
+sentence,logit,prediction,sentiment_score
+"A Russian warplane dropped a bomb on a Russian city of more than 400,000 people late Thursday, leaving a crater 20 meters (65 feet) across, blowing a car onto a roof and damaging buildings in what state media called an “accidental” or “emergency” release of air ordnance.",[0.02227898 0.81399876 0.16372234],negative,-0.7917198
+"A Russian Su-34 aircraft, a twin-engine fighter-bomber, was performing a flight over the city of Belgorod, 40 kilometers (24.8 miles) north of the border with Ukraine when the “accidental” drop of munition took place, according to reports from state news agency RIA Novosti.",[0.04187433 0.63500154 0.32312408],negative,-0.5931272
+"“At around 22:15 Moscow time on April 20, when a Su-34 plane of the Russian Aerospace Forces was performing a flight above the city of Belgorod, an emergency release of an air ordnance occurred,” TASS quoted the Russian Defense Ministry as saying.",[0.02174598 0.8148796  0.16337444],negative,-0.7931336
+"“It happened at the intersection of one of the central streets, leaving a huge impact crater with a radius of 20 meters,” Vyacheslav Gladkov, governor of the Belgorod region, said in a Telegram post.",[0.03559406 0.7624531  0.20195284],negative,-0.72685903
+"An overturned car landed on the roof of a store, according to RIA Novosti.",[0.01695232 0.8788265  0.10422122],negative,-0.86187416
+It is scary and many people are worried about it!,[0.01793876 0.83310056 0.14896065],negative,-0.8151618
+Belgorod Mayor Valentin Demidov wrote on his Telegram channel that several apartment buildings were damaged in the blast.,[0.01488829 0.8605083  0.1246034 ],negative,-0.84562004
