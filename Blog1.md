@@ -35,7 +35,7 @@ For crypto market, things are more uncertain and usually out of our expectation.
 
 *Co-Author: Fung Ho Kit, Yang Fan, Li Xinran*
 
-*Created date: 2023.03.24  *
+*Created date: 2023.03.24*
 
 To start our project which aims to generate a framwork which can forecast stock price with historical stock data and realtime forum discussions, we firstly investigated several exsisting works and here are three papers we found might be useful for our project.
 
@@ -83,16 +83,21 @@ This work published on IEEE proposed a novel application of deep learning models
 
 After finishing processing the financial and text data individually, the authors utilized the matrix multiplication to unify their vector dimension so that the influence of both data can have similar weights. Then they directly merge the two time sequence of vectors and feed it into LSTM model, so that they wish to forecast the coming stock price. 
 
-# Blog 3 - 
+# Blog 3 - Scraping Matters
 
 *Author: Yang Fan*
 
 *Co-Author: Fung Ho Kit, Li Xinran, Zhu Jiayi*
 
-*Created date: 2023.04.24  *
+*Created date: 2023.04.24*
 
 ## What to Scrape
+After we had settled on the theme, we decided to scrape on mainstream news media and social media platforms. Considering our selection are all US technology companies, The Wall Street Journal, Consumer News and Business Channel, and Yahoo News are news media. Social media will focus on Reddit and Twitter.
 
 ## How to Scrape
 
-## **TWITTER**
+## **TWITTER** 
+This section is listed separately because Twitter scraping failed.
+We first started using Twint for this, and with the workaround in its GitHub Issue, Twint was confirmed to work still. 
+（这是一张没有配的插图）
+However, after a large number of requests for data, we found that Twint was not officially maintained after the Twitter API was banned, and its "until" function was not working, so we could only read the first ten days of content. Once the request is over ten days, Twint can only retrieve a few tweets, and other people have also mentioned this in issues, but there currently lacks a solution.
