@@ -113,9 +113,11 @@ However, after a large number of requests for data, we found that Twint was not 
 
 # Blog 4 - Data Processing
 
-Author: Li Xinran
-Co-Author: Fung Ho Kit, Yang Fan, Zhu Jiarui
-Created Date: 2023.04.25
+*Author: Li Xinran*
+
+*Co-Author: Fung Ho Kit, Yang Fan, Zhu Jiarui*
+
+*Created Date: 2023.04.25*
 
 After scraping the text data from various platforms, we need to process it before feeding it into the model. FinBERT supports many common English punctuations and can split a paragraph into sentences by itself. It saved us a lot of work and what we did in the data processing part was mainly cleaning. During cleaning, the main difficulty we ran into was dealing with invalid characters.
 
