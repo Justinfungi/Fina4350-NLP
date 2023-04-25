@@ -52,20 +52,27 @@ for i in range(length):
         store(output_dict, last_date, cul_score_title/counter, cul_score_summary/counter)
         # initialize again
         cul_score_title, cul_score_summary, counter = 0, 0, 0
-    
-    # get score for the new title and summary
-    score_title = predict(title, model, write_to_csv=False)
-    cul_score_title += score_title
-    score_summary = predict(summary, model, write_to_csv=False)
-    cul_score_summary += score_summary
-    counter += 1
-    last_date = date
+    try:
+        # get score for the new title and summary
+        score_title = predict(title, model, write_to_csv=False)
+        cul_score_title += score_title
+        score_summary = predict(summary, model, write_to_csv=False)
+        cul_score_summary += score_summary
+        counter += 1
+        last_date = date
+    except Exception as error:
+        print("Error happened in handeling line", i, "of file", args.table_path)
+        print("title: ", title)
+        print("summary: ", summary)
+        print("Error: ", error)
+        # break
 
     # showing progress
     if i % 100 == 0:
         print("finish", i, "/", length)
 
-store(output_dict, last_date, cul_score_title/counter, cul_score_summary/counter)
+if counter > 0:
+    store(output_dict, last_date, cul_score_title/counter, cul_score_summary/counter)
 df_out = pd.DataFrame.from_dict(output_dict)
 print(df_out)
 df_out.to_csv(os.path.join(args.output_dir,output))
