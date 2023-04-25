@@ -26,8 +26,8 @@ The model will be downloaded directly during the first running time. So no need 
 | Amazon  |  Done!  |
 |  Apple  |  Done!  |
 | Google  |  Done!  |
-|Microsoft|  Under process |
-| Nvidia  |  Under process |
+|Microsoft|  Done!  |
+| Nvidia  |  Done!  |
 |  Tesla  |  Done!  |
 
 All the prediction scores are in csv files inside `output/` folder. 
