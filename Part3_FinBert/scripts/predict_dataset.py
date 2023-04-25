@@ -6,22 +6,24 @@ import argparse
 import os
 import pandas as pd
 import numpy as np
+import datetime
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 tokenizer = AutoTokenizer.from_pretrained("ProsusAI/finbert")
-parser = argparse.ArgumentParser(description='Sentiment analyzer')
+date_format = '%Y-%m-%d %H:%M:%S'
 
+parser = argparse.ArgumentParser(description='Sentiment analyzer')
 parser.add_argument('-a', action="store_true", default=False)
 parser.add_argument('--table_path', type=str, help='Path to the dataset table.')
 parser.add_argument('--output_dir', type=str, help='Where to write the results')
 parser.add_argument('--model_path', type=str, help='Path to classifier model')
+parser.add_argument('--mode', type=str, default="check", help='Path to classifier model')
 
 args = parser.parse_args()
 
 if not os.path.exists(args.output_dir):
     os.mkdir(args.output_dir)
 
-model = AutoModelForSequenceClassification.from_pretrained("ProsusAI/finbert")
 head, tail = os.path.split(args.table_path)
 output = "predictions_"+tail[:-4]+"csv"
 print("output stored in: ", os.path.join(args.output_dir,output))
@@ -41,6 +43,7 @@ def check_before_start():
 
 def predict_dataset():
     # initialize
+    model = AutoModelForSequenceClassification.from_pretrained("ProsusAI/finbert")
     # df = df.sort_values(by=['date', 'platform'])
     last_date = df["date"][0]
     cul_score_title, cul_score_summary, counter = 0, 0, 0
@@ -57,8 +60,17 @@ def predict_dataset():
         # store if comes to a new day
         if ((last_date) != (date) and counter > 0):
             store(output_dict, last_date, cul_score_title/counter, cul_score_summary/counter)
+
             # initialize again
             cul_score_title, cul_score_summary, counter = 0, 0, 0
+
+            # fix the gap if date is not continious
+            prev_date = last_date - datetime.timedelta(days=1)
+            while date < prev_date:
+                store(output_dict, prev_date, 0, 0)
+                print("fixed empty date", prev_date)
+                prev_date -= datetime.timedelta(days=1)
+
         try:
             # get score for the new title and summary
             score_title = predict(title, model, write_to_csv=False)
@@ -84,4 +96,7 @@ def predict_dataset():
     print(df_out)
     df_out.to_csv(os.path.join(args.output_dir,output))
 
-check_before_start()
+if args.mode == "check":
+    check_before_start()
+elif args.mode == "run":
+    predict_dataset()
