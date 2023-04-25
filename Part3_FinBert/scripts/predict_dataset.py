@@ -5,6 +5,7 @@ from finbert.finbert import predict
 import argparse
 import os
 import pandas as pd
+import numpy as np
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 tokenizer = AutoTokenizer.from_pretrained("ProsusAI/finbert")
@@ -25,54 +26,62 @@ head, tail = os.path.split(args.table_path)
 output = "predictions_"+tail[:-4]+"csv"
 print("output stored in: ", os.path.join(args.output_dir,output))
 
+df = pd.read_excel(args.table_path)
+
 def store(dict, date, score_title, score_summary):
     dict["date"].append(date)
     dict["score_title"].append(score_title)
     dict["score_summary"].append(score_summary)
 
-###############################################
+def check_before_start():
+    title_df = pd.notna(df["title"])
+    summary_df = pd.notna(df["summary"])
+    print("have empty title", df.index[title_df == False].tolist())
+    print("have empty summary", df.index[summary_df == False].tolist())
 
-# initialize
-df = pd.read_excel(args.table_path)
-# df = df.sort_values(by=['date', 'platform'])
-last_date = df["date"][0]
-cul_score_title, cul_score_summary, counter = 0, 0, 0
-output_dict = {"date": [],
-               "score_title": [],
-               "score_summary": []}
+def predict_dataset():
+    # initialize
+    # df = df.sort_values(by=['date', 'platform'])
+    last_date = df["date"][0]
+    cul_score_title, cul_score_summary, counter = 0, 0, 0
+    output_dict = {"date": [],
+                "score_title": [],
+                "score_summary": []}
 
-length = len(df)
-# length = 10 # for debug testing
+    length = len(df)
+    # length = 10 # for debug testing
 
-for i in range(length):
-    date, platform, title, summary = df["date"][i], df["platform"][i], df["title"][i], df["summary"][i]
-    
-    # store if comes to a new day
-    if ((last_date) != (date)):
+    for i in range(length):
+        date, platform, title, summary = df["date"][i], df["platform"][i], df["title"][i], df["summary"][i]
+        
+        # store if comes to a new day
+        if ((last_date) != (date) and counter > 0):
+            store(output_dict, last_date, cul_score_title/counter, cul_score_summary/counter)
+            # initialize again
+            cul_score_title, cul_score_summary, counter = 0, 0, 0
+        try:
+            # get score for the new title and summary
+            score_title = predict(title, model, write_to_csv=False)
+            cul_score_title += score_title
+            score_summary = predict(summary, model, write_to_csv=False)
+            cul_score_summary += score_summary
+            counter += 1
+            last_date = date
+        except Exception as error:
+            print("Error happened in handeling line", i, "of file", args.table_path)
+            print("title: ", title)
+            print("summary: ", summary)
+            print("Error: ", error)
+            # break
+
+        # showing progress
+        if i % 100 == 0:
+            print("finish", i, "/", length)
+
+    if counter > 0:
         store(output_dict, last_date, cul_score_title/counter, cul_score_summary/counter)
-        # initialize again
-        cul_score_title, cul_score_summary, counter = 0, 0, 0
-    try:
-        # get score for the new title and summary
-        score_title = predict(title, model, write_to_csv=False)
-        cul_score_title += score_title
-        score_summary = predict(summary, model, write_to_csv=False)
-        cul_score_summary += score_summary
-        counter += 1
-        last_date = date
-    except Exception as error:
-        print("Error happened in handeling line", i, "of file", args.table_path)
-        print("title: ", title)
-        print("summary: ", summary)
-        print("Error: ", error)
-        # break
+    df_out = pd.DataFrame.from_dict(output_dict)
+    print(df_out)
+    df_out.to_csv(os.path.join(args.output_dir,output))
 
-    # showing progress
-    if i % 100 == 0:
-        print("finish", i, "/", length)
-
-if counter > 0:
-    store(output_dict, last_date, cul_score_title/counter, cul_score_summary/counter)
-df_out = pd.DataFrame.from_dict(output_dict)
-print(df_out)
-df_out.to_csv(os.path.join(args.output_dir,output))
+check_before_start()
