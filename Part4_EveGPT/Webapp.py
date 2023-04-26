@@ -48,8 +48,10 @@ st.markdown(Group, unsafe_allow_html=True)
 path = os.getcwd()
 path
 sys.path.insert(0, ".")
-path = os.path.join(".", "style.css")
-local_css("./style.css")
+try:
+    local_css("./style.css")
+except:
+    local_css("/app/fina4350-nlp/Part4_EveGPT/style.css")
 
 
 
