@@ -5,4 +5,4 @@ numpy
 keras
 tensorflow
 plotly
-sklearn
+scikit-learn
