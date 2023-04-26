@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import time
 import pandas_ta as ta
+import os
 
 import keras
 from keras.models import Sequential
@@ -42,8 +43,11 @@ Group = """
             </div>
         """
 st.markdown(Group, unsafe_allow_html=True)
-
-local_css("https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part4_EveGPT/style.css")
+path =  os.getcwd()
+try:
+    local_css(os.path.join(path, "style.css"))
+except:
+    pass
 
 
 ###############################################
