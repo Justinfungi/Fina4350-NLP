@@ -212,7 +212,11 @@ for j in range(6):
 X=np.moveaxis(X, [0], [2])
 print(X.shape)
 
-loaded_model = keras.models.load_model('EveGPT')
+try:
+    loaded_model = keras.models.load_model('EveGPT')
+except:
+    loaded_model = keras.models.load_model('/app/fina4350-nlp/Part4_EveGPT/EveGPT')
+
 loaded_model.summary()
 y_pred = loaded_model.predict(X)
 
