@@ -1,7 +1,6 @@
 import streamlit as st
 from datetime import date
 import yfinance as yf
-import matplotlib.pyplot as plt
 from plotly import graph_objs as go
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
