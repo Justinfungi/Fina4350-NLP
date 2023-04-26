@@ -42,8 +42,8 @@ Group = """
             </div>
         """
 st.markdown(Group, unsafe_allow_html=True)
-path = os.path.dirname(__file__)
-local_css(path+"/style.css")
+
+local_css("https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part4_EveGPT/style.css")
 
 
 ###############################################
