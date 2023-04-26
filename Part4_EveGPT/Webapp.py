@@ -42,7 +42,8 @@ Group = """
             </div>
         """
 st.markdown(Group, unsafe_allow_html=True)
-local_css("style.css")
+path = os.path.dirname(__file__)
+local_css(path+"/style.css")
 
 
 ###############################################
