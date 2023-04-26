@@ -9,6 +9,7 @@ import time
 import pandas_ta as ta
 import os
 import sys
+from io import BytesIO
 
 import keras
 from keras.models import Sequential
@@ -46,7 +47,7 @@ Group = """
 st.markdown(Group, unsafe_allow_html=True)
 sys.path.insert(0, ".")
 path = os.path.join(".", "style.css")
-local_css(path)
+local_css("./style.css")
 
 
 
