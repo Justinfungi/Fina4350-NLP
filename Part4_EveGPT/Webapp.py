@@ -8,6 +8,7 @@ import numpy as np
 import time
 import pandas_ta as ta
 import os
+import sys
 
 import keras
 from keras.models import Sequential
@@ -43,11 +44,10 @@ Group = """
             </div>
         """
 st.markdown(Group, unsafe_allow_html=True)
-path =  os.getcwd()
-try:
-    local_css(os.path.join(path, "style.css"))
-except:
-    pass
+sys.path.insert(0, ".")
+path = os.path.join(".", "style.css")
+local_css(path)
+
 
 
 ###############################################

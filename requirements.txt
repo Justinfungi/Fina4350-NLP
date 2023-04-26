@@ -6,3 +6,5 @@ keras
 tensorflow
 plotly
 scikit-learn
+os
+sys
