@@ -6,3 +6,4 @@ keras
 tensorflow
 plotly
 scikit-learn
+openpyxl
