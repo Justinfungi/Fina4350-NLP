@@ -108,7 +108,13 @@ st.markdown('<div style="background-color:#F4D03F;padding:10px;border-radius:10p
 
 
 def load_scrapped_text(ticker):
-    Path = f"data/{ticker}.xlsx"
+    try:
+        Path = f"data/{ticker}.xlsx"
+        scraped_text = pd.read_excel(Path).iloc[::-1].set_index("date")
+    except:
+        Path = f"/app/fina4350-nlp/Part4_EveGPT/data/{ticker}.xlsx"
+        scraped_text = pd.read_excel(Path).iloc[::-1].set_index("date")
+
     scraped_text = pd.read_excel(Path).iloc[::-1].set_index("date")
     scraped_text.index = pd.to_datetime(scraped_text.index).date
     return scraped_text
