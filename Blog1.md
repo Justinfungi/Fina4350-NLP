@@ -132,7 +132,7 @@ We then guess that those non-English characters were actually punctuations that 
 In this case, we should not simply drop (by filtering out rows with non-Ascii characters) those observations containing invalid characters, because it would be a waste of data. What we did was to look through enough data, and try to find the mappings (e.g., ‚Äô is actually ') for, if not all, most of the "messy punctuations". Only after replacing them with their original form, we use the "Ascii filter" to drop the rows containing invalid characters (e.g., the full stop from the Chinese input method), which our model cannot process.
 
 
-# Blog 4 - EveGPT
+# Blog 5 - EveGPT
 
 *Author: Fung Ho Kit*
 
@@ -149,7 +149,7 @@ There is also another question to think about - how many data i should use. it i
 Another challenge is that how can we evaluate our model. While the prediction may fluctuate with the stock price, it is a unbiased and efficient way to assess our model. This question is proposed by our professor in the final presentation. This is rather important and there is no such a clear solution for question. There are papers using common loss such as RMSE or MAE to evaluate the model, but the loss is not so efficient. It should be a great direction to explore.
 
 
-# Blog 4 - WebApp
+# Blog 6 - WebApp
 
 *Author: Fung Ho Kit*
 
