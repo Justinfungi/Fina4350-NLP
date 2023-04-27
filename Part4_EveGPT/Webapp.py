@@ -75,6 +75,7 @@ selected_Stocks = st.selectbox("Select stock", stocks)
 #n_years = st.slider("Year of prediction",1,4)
 #period = n_years*365
 
+@st.cache
 def load_data(ticker):
     tickers = yf.Tickers(ticker)
     data = tickers.tickers[ticker].history(start=start,end=today)
@@ -106,7 +107,7 @@ st.markdown('<div style="background-color:#F4D03F;padding:10px;border-radius:10p
 #
 ################################################
 
-
+@st.cache
 def load_scrapped_text(ticker):
     try:
         Path = f"data/{ticker}.xlsx"
@@ -118,6 +119,8 @@ def load_scrapped_text(ticker):
     scraped_text = pd.read_excel(Path).iloc[::-1].set_index("date")
     scraped_text.index = pd.to_datetime(scraped_text.index).date
     return scraped_text
+
+@st.cache
 def load_sentiment_score(ticker):
     try:
         Path = f"../Part3_FinBert/output/predictions_{ticker}.csv"
@@ -159,6 +162,7 @@ tickers = yf.Tickers(company)
 StockPrice = tickers.tickers[company].history(start=Starting,end=Ending)
 StockPrice.index = pd.to_datetime(StockPrice.index).date
 
+@st.cache
 try:
     Path = f"../Part3_FinBert/output/predictions_{company}.csv"
     Sentiment = pd.read_csv(Path).iloc[::-1]\
