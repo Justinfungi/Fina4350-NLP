@@ -16,3 +16,7 @@ To get the sentence_level and average sentiment score of one text, enter `script
 ```
 streamlit run WebApp.py
 ```
+# Webapp deployment
+If the memory is not out of memory, the app should be working
+
+https://justinfungi-fina4350-nlp-part4-evegptwebapp-9vlrp3.streamlit.app/ 
