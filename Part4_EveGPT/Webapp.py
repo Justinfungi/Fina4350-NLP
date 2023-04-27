@@ -226,11 +226,11 @@ sc = MinMaxScaler(feature_range=(0,1))
 #y_test = sc.fit_transform(y)
 sc.fit(y)
 y_pred = sc.inverse_transform(y_pred)
-y_test = pd.Series(y)
-
+y_test = list(y)
+y_test
 def plot_result():
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x = y.index,y = y_test.ravel(), name = 'original', line=dict(color='white')))
+    fig.add_trace(go.Scatter(x = y.index,y = y_test, name = 'original', line=dict(color='white')))
     fig.add_trace(go.Scatter(x = y.index,y = y_pred.ravel(), name = 'predition',  line=dict(color='#FF9E44')))
     fig.layout.update(title_text="Prediction", xaxis_rangeslider_visible=True)
     st.plotly_chart(fig)
