@@ -46,11 +46,11 @@ This research conducted by IBM Research proposed **CharSCNN** (Character to Sent
 
 1. Initial Representation Levels embeddings
 
-    1. Word-Level Embeddings 
+    1. Word-Level Embeddings
 
         matrix multiplication
 
-    2. Character-Level Embeddings 
+    2. Character-Level Embeddings
 
         character-wise CNN
 
@@ -64,14 +64,14 @@ Although this paper only conducted polarity analysis and classify the news into 
 ## **BERT**: FinBERT: Financial Sentiment Analysis with Pre-trained Language Models
 *Araci, D. (2019).*
 
-Researchers from University of Amsterdam FinBERT proposed a language model based on BERT, to tackle NLP tasks in financial domain. After further trained on 
+Researchers from University of Amsterdam FinBERT proposed a language model based on BERT, to tackle NLP tasks in financial domain. After further trained on
 TRC2-financial and Financial PhraseBank database, FinBERT got outstanding performance on financial news and discussions.
 
 
 ## **LSTM**: Deep learning for stock prediction using numerical and textual information
 *Akita, R., Yoshihara, A., Matsubara, T., & Uehara, K. (2016, June).*
 
-This work published on IEEE proposed a novel application of deep learning models, Paragraph Vector, and Long Short-Term Memory (LSTM), to financial time series forecasting. It provides a workable approach for us to combine text information and historical financial data. 
+This work published on IEEE proposed a novel application of deep learning models, Paragraph Vector, and Long Short-Term Memory (LSTM), to financial time series forecasting. It provides a workable approach for us to combine text information and historical financial data.
 
 1. Mapping
 
@@ -81,7 +81,7 @@ This work published on IEEE proposed a novel application of deep learning models
 
     $\Large value_{cn}^t = \frac{2*price_{cn}^t-(max{cn}+min_{cn})}{max_{cn}-min_{cn}}$
 
-After finishing processing the financial and text data individually, the authors utilized the matrix multiplication to unify their vector dimension so that the influence of both data can have similar weights. Then they directly merge the two time sequence of vectors and feed it into LSTM model, so that they wish to forecast the coming stock price. 
+After finishing processing the financial and text data individually, the authors utilized the matrix multiplication to unify their vector dimension so that the influence of both data can have similar weights. Then they directly merge the two time sequence of vectors and feed it into LSTM model, so that they wish to forecast the coming stock price.
 
 # Blog 3 - Scraping Matters
 
@@ -101,10 +101,10 @@ Web scraping is the process of extracting data from websites using automated too
 ### Yahoo News
 ### Bloomberg
 
-## **TWITTER** 
+## **TWITTER**
 This section is listed separately because Twitter scraping failed.
 
-We first started using Twint for this, and with the workaround in its GitHub Issue, Twint was confirmed to work still. 
+We first started using Twint for this, and with the workaround in its GitHub Issue, Twint was confirmed to work still.
 
 （这是一张没有配的插图）
 
@@ -130,3 +130,38 @@ At first glance, we noticed that there are some non-English letters (e.g., Ä) i
 We then guess that those non-English characters were actually punctuations that got messy in the process of scraping. This was proved to be true when we opened the webpage where one of those texts was from.
 
 In this case, we should not simply drop (by filtering out rows with non-Ascii characters) those observations containing invalid characters, because it would be a waste of data. What we did was to look through enough data, and try to find the mappings (e.g., ‚Äô is actually ') for, if not all, most of the "messy punctuations". Only after replacing them with their original form, we use the "Ascii filter" to drop the rows containing invalid characters (e.g., the full stop from the Chinese input method), which our model cannot process.
+
+
+# Blog 4 - EveGPT
+
+*Author: Fung Ho Kit*
+
+*Co-Author: Li Xinran, Yang Fan, Zhu Jiarui*
+
+*Created Date: 2023.04.27*
+
+While Sentiment Scores are finished, it is excited to build the Step4 - EveGPT.
+
+For the modeling, we use LSTM model to predict the stock price since it is a great model to track time series data. Different from my initial thoughts, i discover that it probably fail if we use stock price to predict stock price. When we try to feed the stock price, the model tend to have a overfitting problem and try to predict the stock price according to what we get in the previous day. After the talk with my friends in the securities asset management company, i got some inspirations on the prediction. Instead of using the stock price which is rather naive and useless, we can manipulate some technical indicators to yield some insights on the momentum and the growth possibility.
+
+There is also another question to think about - how many data i should use. it is not so difficult to retrieve information like stock price or statement nowadays. However, the key is that how can we use them. After researching more on different paper, it seems that we can manipulate the Look-back Method. Instead of 1-to-1 matching, we use n-to-1 matching which means we can consider the past n days data to predict the trend and have a conclusion on the stock price. By referencing more past data, our model can have the understanding of "Trend", which can help us have a better prediction
+
+Another challenge is that how can we evaluate our model. While the prediction may fluctuate with the stock price, it is a unbiased and efficient way to assess our model. This question is proposed by our professor in the final presentation. This is rather important and there is no such a clear solution for question. There are papers using common loss such as RMSE or MAE to evaluate the model, but the loss is not so efficient. It should be a great direction to explore.
+
+
+# Blog 4 - WebApp
+
+*Author: Fung Ho Kit*
+
+*Co-Author: Li Xinran, Yang Fan, Zhu Jiarui*
+
+*Created Date: 2023.04.30*
+
+It is actually really important to build a webapp. Development of codes usually are limited locally and the usage also be limited no matter how great your idea is. Therefore, it is necessary to think about how to get your work populated and circulated. There are several ways to implement that, which i have explore for 1 year or so.
+
+1. Learning Full Stack Techniques: Being full stack means that you can both handle frontend and backend development. The requirements may be a bit hard since you need to acquire the knowledge of HTML/CSS for frontend template setting and JS/Flask/Node.js for backend function. Although i can have the experience in such workflow of development, it is rather difficult considering the short period of semester and potential workload from other courses. There are several benefits for such kind of development. Firstly, it can be more flexible in the content and functions, while the alternative in second methods will have some preset templates. Also, you will have more authority since you are the one hosting the websites.
+
+2. Utilizing some libraries for building lightweight websites. I have multiple exploration on these tools such as Django and streamlit. I think one of the benefits is that these allow you to build a impress website within a short period since they have some templates so that you can use fewer lines to achieve the expected function. Also, they have a easy deployment choice. For example, streamlit have a web server. Therefore, i can deploy my model by just click several buttons. The real process to deploy a self-hosting website require more steps and more expenses on the web domain. There is one dilemma we face before today's final presentation is that our website fail due to the error "Resources out of limit". It seems that they only allow for 1 GB data storage unless you have upgrades on the plans. Therefore, it is better for demonstrating ideas and not for long-term development of websites.
+
+
+Our current project is also using streamlit to put the code online. It may not be a very perfect one but should be enough for us to deliver the ideas in our project. it causes me a lot of time to think about how to incorporate the AI model into the WebApp. Thanksfully, things worked out. And in the WebApp, user can choose the company in our portfolio to see the prediction. It is a limitation of our project that the webscraping and Sentiment scores calculation cannot be automated yet. We can only predict the stock price of the days with the text data from webscraping. If the webscraping process can be automated, our model can be more useful considering that it can update the prediction on a daily basis based on the newly scraped text and the stock price
