@@ -75,7 +75,7 @@ selected_Stocks = st.selectbox("Select stock", stocks)
 #n_years = st.slider("Year of prediction",1,4)
 #period = n_years*365
 
-
+@st.cache_data
 def load_data(ticker):
     tickers = yf.Tickers(ticker)
     data = tickers.tickers[ticker].history(start=start,end=today)
@@ -107,7 +107,7 @@ st.markdown('<div style="background-color:#F4D03F;padding:10px;border-radius:10p
 #
 ################################################
 
-
+@st.cache_data
 def load_scrapped_text(ticker):
     try:
         Path = f"data/{ticker}.xlsx"
@@ -120,7 +120,7 @@ def load_scrapped_text(ticker):
     scraped_text.index = pd.to_datetime(scraped_text.index).date
     return scraped_text
 
-
+@st.cache_data
 def load_sentiment_score(ticker):
     try:
         Path = f"../Part3_FinBert/output/predictions_{ticker}.csv"
@@ -190,15 +190,13 @@ Sentiment = Sentiment[mask]
 Full_data = pd.concat((StockPrice,Sentiment),axis=1)
 
 Full_data['RSI']=ta.rsi(Full_data.Close, length=30)
-Full_data['EMAF']=ta.ema(Full_data.Close, length=30)
-Full_data['EMAM']=ta.ema(Full_data.Close, length=30)
-Full_data['EMAS']=ta.ema(Full_data.Close, length=30)
+Full_data['EMA']=ta.ema(Full_data.Close, length=30)
 
 Full_data['TargetNextClose'] = Full_data['Close'].shift(-1)
 Full_data['TargetNextClose'] = Full_data['Close'].shift(-1)
 Full_data.iloc[:, 0:-1].dropna(inplace=True)
 Full_data.drop(['Volume'], axis=1, inplace=True)
-data_set = Full_data.iloc[30:-1, 6:12]
+data_set = Full_data.iloc[30:-1, 6:10]
 st.write(data_set.head(10))
 
 sc = MinMaxScaler(feature_range=(0,1))
@@ -207,7 +205,7 @@ X = []
 backcandles = 10 # Look back period
 
 print(data_set_scaled.shape[0])
-for j in range(6):
+for j in range(4):
     X.append([])
     for i in range(backcandles, data_set_scaled.shape[0]):
         X[j].append(data_set_scaled[i-backcandles:i, j])
@@ -215,19 +213,24 @@ for j in range(6):
 #move axis from 0 to position 2
 X=np.moveaxis(X, [0], [2])
 
-try:
-    loaded_model = keras.models.load_model('EveGPT')
-except:
-    loaded_model = keras.models.load_model('/app/fina4350-nlp/Part4_EveGPT/EveGPT')
+@st.cache_data
+def load_model():
+    try:
+        loaded_model = keras.models.load_model('EveGPT')
+    except:
+        loaded_model = keras.models.load_model('/app/fina4350-nlp/Part4_EveGPT/EveGPT')
+    return loaded_model
 
-loaded_model.summary()
+loaded_model = load_model()
+#loaded_model.summary()
 y_pred = loaded_model.predict(X)
 
-y = Full_data.iloc[40:-1, 12:]
+y = Full_data.iloc[40:-1, 10:]
 sc = MinMaxScaler(feature_range=(0,1))
 y_test = sc.fit_transform(y)
 y_pred = sc.inverse_transform(y_pred)
 y_test = sc.inverse_transform(y_test)
+
 def plot_result():
     fig = go.Figure()
     fig.add_trace(go.Scatter(x = y.index,y = y_test.ravel(), name = 'original', line=dict(color='green')))
