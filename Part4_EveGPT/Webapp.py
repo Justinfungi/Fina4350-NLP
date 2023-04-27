@@ -46,7 +46,7 @@ Group = """
         """
 st.markdown(Group, unsafe_allow_html=True)
 path = os.getcwd()
-path
+#path
 sys.path.insert(0, ".")
 try:
     local_css("./style.css")
@@ -142,7 +142,7 @@ st.write("Scraped Text")
 st.write(scraped_text.tail(10))
 
 st.write("Sentiment score retrival")
-st.write(Sentiment.tail(10))
+#st.write(Sentiment.tail(10))
 
 
 ###############################################
@@ -223,7 +223,9 @@ y_pred = loaded_model.predict(X)
 y = Full_data.iloc[40:-1, 12:]
 print(y)
 sc = MinMaxScaler(feature_range=(0,1))
-y_test = sc.fit_transform(y)
+#y_test = sc.fit_transform(y)
+sc.fit(y)
+y_pred = scaler.inverse_transform(y_pred)
 
 def plot_result():
     fig = go.Figure()
