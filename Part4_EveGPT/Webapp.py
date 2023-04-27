@@ -75,7 +75,7 @@ selected_Stocks = st.selectbox("Select stock", stocks)
 #n_years = st.slider("Year of prediction",1,4)
 #period = n_years*365
 
-@st.cache
+
 def load_data(ticker):
     tickers = yf.Tickers(ticker)
     data = tickers.tickers[ticker].history(start=start,end=today)
@@ -107,7 +107,7 @@ st.markdown('<div style="background-color:#F4D03F;padding:10px;border-radius:10p
 #
 ################################################
 
-@st.cache
+
 def load_scrapped_text(ticker):
     try:
         Path = f"data/{ticker}.xlsx"
@@ -120,7 +120,7 @@ def load_scrapped_text(ticker):
     scraped_text.index = pd.to_datetime(scraped_text.index).date
     return scraped_text
 
-@st.cache
+
 def load_sentiment_score(ticker):
     try:
         Path = f"../Part3_FinBert/output/predictions_{ticker}.csv"
@@ -162,7 +162,7 @@ tickers = yf.Tickers(company)
 StockPrice = tickers.tickers[company].history(start=Starting,end=Ending)
 StockPrice.index = pd.to_datetime(StockPrice.index).date
 
-@st.cache
+
 try:
     Path = f"../Part3_FinBert/output/predictions_{company}.csv"
     Sentiment = pd.read_csv(Path).iloc[::-1]\
@@ -199,7 +199,7 @@ Full_data['TargetNextClose'] = Full_data['Close'].shift(-1)
 Full_data.iloc[:, 0:-1].dropna(inplace=True)
 Full_data.drop(['Volume'], axis=1, inplace=True)
 data_set = Full_data.iloc[30:-1, 6:12]
-st.write(data_set)
+st.write(data_set.head(10))
 
 sc = MinMaxScaler(feature_range=(0,1))
 data_set_scaled = sc.fit_transform(data_set)
@@ -214,7 +214,6 @@ for j in range(6):
 
 #move axis from 0 to position 2
 X=np.moveaxis(X, [0], [2])
-print(X.shape)
 
 try:
     loaded_model = keras.models.load_model('EveGPT')
@@ -225,7 +224,6 @@ loaded_model.summary()
 y_pred = loaded_model.predict(X)
 
 y = Full_data.iloc[40:-1, 12:]
-print(y)
 sc = MinMaxScaler(feature_range=(0,1))
 y_test = sc.fit_transform(y)
 y_pred = sc.inverse_transform(y_pred)
