@@ -213,7 +213,6 @@ for j in range(4):
 #move axis from 0 to position 2
 X=np.moveaxis(X, [0], [2])
 
-@st.cache_data
 def load_model():
     try:
         loaded_model = keras.models.load_model('EveGPT')
