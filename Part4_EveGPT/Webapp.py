@@ -77,7 +77,7 @@ selected_Stocks = st.selectbox("Select stock", stocks)
 
 def load_data(ticker):
     tickers = yf.Tickers(ticker)
-    data = tickers.tickers[ticker].history(start=start)
+    data = tickers.tickers[ticker].history(start=start,end=today)
     data.index = pd.to_datetime(data.index).date
     #data.reset_index(inplace = True)
     return data
