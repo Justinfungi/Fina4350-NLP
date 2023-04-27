@@ -222,12 +222,12 @@ y_pred = loaded_model.predict(X)
 
 y = Full_data.iloc[40:-1, 12:]
 print(y)
+print(type(y))
 sc = MinMaxScaler(feature_range=(0,1))
 #y_test = sc.fit_transform(y)
 sc.fit(y)
 y_pred = sc.inverse_transform(y_pred)
-y_test = list(y)
-y_test
+y_test = y
 def plot_result():
     fig = go.Figure()
     fig.add_trace(go.Scatter(x = y.index,y = y_test, name = 'original', line=dict(color='white')))
