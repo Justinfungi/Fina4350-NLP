@@ -227,7 +227,7 @@ sc = MinMaxScaler(feature_range=(0,1))
 sc.fit(y)
 y_pred = sc.inverse_transform(y_pred)
 y_pred
-y_test = pd.Series(y)
+y_test = y
 y_test
 def plot_result():
     fig = go.Figure()
