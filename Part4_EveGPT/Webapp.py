@@ -25,6 +25,16 @@ from keras.layers import TimeDistributed
 #
 ################################################
 
+LANGUAGES = {
+    'en': lambda text: text,
+    'fr': lambda text: translate(text, 'en', 'fr'),
+    'es': lambda text: translate(text, 'en', 'es')
+}
+st.sidebar.subheader('Language')
+language = st.sidebar.selectbox('Select your language', list(LANGUAGES.keys()))
+def _(text):
+    return LANGUAGES[language](text)
+
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -63,7 +73,7 @@ except:
 
 start = "2020-07-20"
 today = date.today().strftime("%Y-%m-%d")
-st.write(f"Today is {today}")
+st.write(_(f"Today is {today}"))
 
 stocks = ["AAPL",
             "TSLA",
