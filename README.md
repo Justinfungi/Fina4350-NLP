@@ -4,6 +4,8 @@
 ## Group Project - Fina4350-NLP
 
 https://justinfungi-fina4350-nlp-part4-evegptwebapp-9vlrp3.streamlit.app/
+
+### [Part 3](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part3_FinBert/README.md)
 ### [Part 4](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part4_EveGPT/README.md)
 
 
