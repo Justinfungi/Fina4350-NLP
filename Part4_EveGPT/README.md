@@ -16,6 +16,11 @@ To get the sentence_level and average sentiment score of one text, enter `script
 ```
 streamlit run WebApp.py
 ```
+
+# lstm Model
+```
+EveGPT_Keras_v3.ipynb is the latest version of training script.
+```
 # Webapp deployment
 If the memory is not out of memory, the app should be working
 
