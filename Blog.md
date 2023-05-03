@@ -87,7 +87,7 @@ After finishing processing the financial and text data individually, the authors
 
 *Author: Yang Fan*
 
-*Co-Author: Fung Ho Kit, Li Xinran, Zhu Jiayi*
+*Co-Author: Fung Ho Kit, Li Xinran, Zhu Jiarui*
 
 *Created date: 2023.04.24*
 
