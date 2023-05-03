@@ -1,13 +1,13 @@
-####Requirements
+Requirements
 ```
 BeautifulSoup
 Selenium
 stealth.min.js
 ```
 
-####Containing 
+Containing 
  ```
- WSJ.py
+ wsj.py
  cnbc.py
  yahoo.py
  bloomberg.py
