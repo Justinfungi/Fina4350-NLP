@@ -4,9 +4,10 @@
 ## Group Project - Fina4350-NLP
 
 https://justinfungi-fina4350-nlp-part4-evegptwebapp-9vlrp3.streamlit.app/
-
-### [Part 3](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part3_FinBert/README.md)
-### [Part 4](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part4_EveGPT/README.md)
+### [Part 1 - Yang Fan   ]()
+### [Part 2 - Li Xinran  ](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part2_DataProcessing/README.md)
+### [Part 3 - Zhu Jiarui ](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part3_FinBert/README.md)
+### [Part 4 - Fung Ho Kit](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part4_EveGPT/README.md)
 
 
 ![](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Inferences/Banner.png)
