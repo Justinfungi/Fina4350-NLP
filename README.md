@@ -2,6 +2,7 @@
 
 
 ## Group Project - Fina4350-NLP
+https://github.com/Justinfungi/Fina4350-NLP
 
 https://justinfungi-fina4350-nlp-part4-evegptwebapp-9vlrp3.streamlit.app/
 ### [Part 1 - Yang Fan   ](https://github.com/Justinfungi/Fina4350-NLP/blob/main/Part1_NewScrape/README.md)
