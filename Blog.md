@@ -1,9 +1,9 @@
 **GROUP 6 EveGPT**
 
 # Blog 1 - Bag of Word
-Author: Fung Ho Kit  
-Co-Author: Yang Fan, Zhu Jiarui, Li Xinran  
-Created date: 2023.02.05  
+*Author: Fung Ho Kit*  
+*Co-Author: Yang Fan, Zhu Jiarui, Li Xinran*  
+*Created date: 2023.02.05*  
 
 During the lecture, Dr.BUEHLMAIER showed us the spying program for Twitter. The program catches my message and downloads it on the laptop. While the program can capture the tweets containing words that are specified in a word bank, a question appeared in my mind - What kind of words should I monitor?
 
